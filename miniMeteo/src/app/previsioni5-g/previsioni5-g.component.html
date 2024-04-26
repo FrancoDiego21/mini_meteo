@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="text-center mt-3">
+          <h1 class="h1">Previsioni</h1>
+          <p>Inserisci la città di cui vuoi visualizzare le previsioni</p>
+        </div>
+      
+        <div class="mb-3">
+          <input type="text" #newquery placeholder="Enter the city" class="form-control input_text" id="cityInput">
+          <div class="mt-2">
+            <button (click)="submit(newquery)" class="btn btn-primary submit" id="submitButton">Submit</button>
+          </div>
+        </div>
+
+        <div *ngIf="previsioni">
+            <h2 class="text-center mb-4">Informazioni sul meteo di {{ previsioni.city.name }} ({{ previsioni.city.country}})</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Icona meteo</th>
+                    <th>Descrizione</th>
+                    <th>Temperatura</th>
+                    <th>Temperatura Percepita </th>
+                    <th>Temperatura minima </th>
+                    <th>Temperatura massima </th>
+                    <th>Nuvolosità </th>
+                    <th>Pioggia (ultime 3 ore) </th>
+                    <th>Velocità del vento </th>
+                    
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of previsioni.list">
+                    <td>{{ item.dt_txt }}</td>
+                    <td><img src="http://openweathermap.org/img/wn/{{ item.weather[0].icon }}@4x.png" alt="Icona meteo" class="img-fluid" style="width: 50px; height: 50px;"></td>
+                    <td>{{ item.weather[0].description }}</td>
+                    <td>{{ item.main.temp }}°</td>
+                    <td>{{ item.main.feels_like }}°</td>
+                    <td>{{ item.main.temp_min }}°</td>
+                    <td>{{ item.main.temp_max }}°</td>
+                    <td>{{ item.clouds.all }}%</td>
+                    <td>{{ item.rain?.['3h'] || '0' }} (mm)</td>
+                    <td>{{ item.wind.speed }} (m/s)</td>
+                    
+                </tr>
+            </tbody>
+        </table>
+        
+        
+        </div>
+
+
+
+
+
+
+
+
+
+    </div>
+</body>
+</html>

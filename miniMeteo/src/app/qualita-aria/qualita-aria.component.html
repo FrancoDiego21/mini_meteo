@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="text-center mt-3">
+          <h1 class="h1">Dettagli sulla qualità dell'aria in questo momento</h1>
+          <p>Inserisci la città.</p>
+        </div>
+      
+        <div class="mb-3">
+          <input type="text" #citta placeholder="Enter the city" class="form-control input_text" id="cityInput">
+          <div class="mt-2">
+            <button (click)="submit(citta)" class="btn btn-primary submit" id="submitButton">Submit</button>
+          </div>
+        </div>
+    </div>
+
+    <div *ngIf="meteoOra && qualitaAria">
+        <div class="card">
+            <div class="card-header align-items-center">
+                <h1 class="card-title text-center">Qualità dell'aria di {{meteoOra.name}} ({{meteoOra.sys.country}})</h1>
+                <h3 class="card-text text-center">{{data}}</h3>
+            </div>
+            
+            <table style="align-items: center;">
+                <caption>
+                    <p>Qualità Aria: {{qualitaText}} </p>
+                </caption>
+                <tr><td><strong>Inquinanti</strong></td><td><strong>Concentrazione</strong></td></tr>
+                <tr><td>CO</td><td>{{qualitaAria.list[0].components.co}} μg/m3</td></tr>
+                <tr><td>NO</td><td>{{qualitaAria.list[0].components.no}} μg/m3</td></tr>
+                <tr><td>NO2</td><td>{{qualitaAria.list[0].components.no2}} μg/m3</td></tr>
+                <tr><td>O3</td><td>{{qualitaAria.list[0].components.o3}} μg/m3</td></tr>
+                <tr><td>SO2</td><td>{{qualitaAria.list[0].components.so2}} μg/m3</td></tr>
+                <tr><td>PM2.5</td><td>{{qualitaAria.list[0].components.pm2_5}} μg/m3</td></tr>
+                <tr><td>PM10</td><td>{{qualitaAria.list[0].components.pm10}} μg/m3</td></tr>
+                <tr><td>NH3</td><td>{{qualitaAria.list[0].components.nh3}} μg/m3</td></tr>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="text-center mt-3">
+          <h1 class="h1">Dettagli meteo in questo momento</h1>
+          <p>Inserisci la città.</p>
+        </div>
+      
+        <div class="mb-3">
+          <input type="text" #citta placeholder="Enter the city" class="form-control input_text" id="cityInput">
+          <div class="mt-2">
+            <button (click)="cerca(citta)" class="btn btn-primary submit" id="submitButton">Submit</button>
+          </div>
+        </div>
+    </div>
+    <div *ngIf="meteoOra">
+        <div class="card">
+            <div class="card-header align-items-center">
+                <h1 class="card-title text-center">Meteo di {{meteoOra.name}} ({{meteoOra.sys.country}})</h1>
+                <h3 class="card-text text-center">{{data}}</h3>
+                <img class="card-img-top mx-auto" src="https://openweathermap.org/img/wn/{{meteoOra.weather[0].icon}}@4x.png" alt="Weather icon" style="height: 100px; width: 100px; margin: 0 auto; display: block;">
+                <h4 class="card-text text-center">{{meteoOra.weather[0].description}}</h4>
+            </div>
+
+            <div class="card-body">
+                
+                <div class="row">
+                    <div class="col-6">
+                        <p><strong>Temperatura:</strong></p>
+                        <p>{{meteoOra.main.temp}}°</p>
+                        </div>
+                        <div class="col-6">
+                        <p><strong>Percepita:</strong></p>
+                        <p>{{meteoOra.main.feels_like}}°</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <p><strong>Minima/Massima:</strong></p>
+                        <p>{{meteoOra.main.temp_min}}°/{{meteoOra.main.temp_max}}°</p>
+                        </div>
+                        <div class="col-6">
+                        <p><strong>Umidità:</strong></p>
+                        <p>{{meteoOra.main.humidity}}%</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <p><strong>Alba:</strong></p>
+                        <p>{{oraA}}</p>
+                        </div>
+                        <div class="col-6">
+                        <p><strong>Tramonto:</strong></p>
+                        <p>{{oraT}}</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>
